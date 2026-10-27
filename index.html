@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Free local-only training review planner. Choose your own review intervals, keep a role-level plan in your browser, and export a CSV. No account required.">
+  <meta name="theme-color" content="#24634e">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>Training review planner | Evergreen Comply</title>
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="app.mjs"></script>
+</head>
+<body>
+  <main>
+    <header>
+      <a class="brand" href="https://www.evergreencomply.com/" target="_blank" rel="noopener noreferrer">Evergreen Comply</a>
+      <h1>Training review planner</h1>
+      <p>Choose a review interval. Keep a plan on this device.</p>
+    </header>
+    <aside class="scope" aria-label="Important limitations">
+      This is a planning tool, not a compliance determination or a training record. Set intervals using the rules and workplace requirements that apply to you. No reminders are sent.
+    </aside>
+    <form id="planner" novalidate>
+      <div class="field wide">
+        <label for="label">Task or role</label>
+        <input id="label" name="label" type="text" maxlength="120" required autocomplete="off" placeholder="Warehouse shipping team" aria-describedby="privacy-note">
+        <p class="hint" id="privacy-note">Use role labels only. Do not enter names, employee records, or sensitive information.</p>
+      </div>
+      <div class="field">
+        <label for="start">Completion / starting date</label>
+        <input id="start" name="start" type="date" min="1900-01-01" max="9999-12-31" required>
+      </div>
+      <fieldset class="field">
+        <legend>Review after</legend>
+        <div class="interval">
+          <label class="sr-only" for="interval">Interval number</label>
+          <input id="interval" name="interval" type="number" min="1" max="1200" step="1" required inputmode="numeric" placeholder="Enter interval">
+          <label class="sr-only" for="unit">Interval unit</label>
+          <select id="unit" name="unit"><option value="months">Months</option><option value="days">Days</option><option value="years">Years</option></select>
+        </div>
+      </fieldset>
+      <div class="form-actions wide"><button type="submit">Save review date</button><p id="preview" aria-live="polite"></p></div>
+    </form>
+    <p id="status" class="status" role="status" aria-live="polite"></p>
+    <section aria-labelledby="plan-heading">
+      <div class="section-heading"><h2 id="plan-heading">Your plan</h2><button type="button" id="export" class="secondary" disabled>Export CSV</button></div>
+      <p id="empty">No review dates yet.</p>
+      <div class="table-wrap" id="table-wrap" hidden role="region" aria-label="Saved review dates" tabindex="0">
+        <table>
+          <thead><tr><th scope="col">Task or role</th><th scope="col">Starting date</th><th scope="col">Interval</th><th scope="col">Review date</th><th scope="col"><span class="sr-only">Actions</span></th></tr></thead>
+          <tbody id="entries"></tbody>
+        </table>
+      </div>
+      <p class="hint">Stored in this browser only. Export a copy before clearing browser data or removing the extension. Dates use calendar days; month-end dates clamp to the last day of the target month.</p>
+      <button type="button" id="reset" class="text-button">Clear saved plan</button>
+    </section>
+    <footer><a href="privacy.html">Privacy</a><a href="https://www.evergreencomply.com/courses" target="_blank" rel="noopener noreferrer">Browse Evergreen training</a></footer>
+    <noscript><p>This planner needs JavaScript. No data is sent to Evergreen.</p></noscript>
+  </main>
+</body>
+</html>
