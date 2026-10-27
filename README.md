@@ -11,3 +11,7 @@ Published by [Evergreen Comply](https://www.evergreencomply.com/), a commercial 
 Version 0.1.0, October 27, 2026. The Chrome Web Store and Microsoft Edge Add-ons versions are not yet published. No store approval, search ranking or regulatory endorsement is claimed.
 
 This repository contains only the standalone public tool, not the Evergreen application. No open-source license is granted by publication of this repository.
+
+## Preferred homepage
+
+https://www.evergreencomply.com/tools/training-review-planner is now the preferred canonical home. This GitHub edition remains usable so users can access and export existing browser-local plans. Storage does not transfer across sites or into the extension automatically. No forced redirect.
